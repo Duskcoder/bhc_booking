@@ -40,7 +40,7 @@ class userController {
     }
 
     let data = {
-      id: emailExists.id,
+      id: emailExists._id,
     };
     const token = generateToken(data);
     return res
