@@ -4,6 +4,7 @@ require("dotenv").config()
 
 
 process.on("uncaughtException",(err)=>{
+   console.log(err);
     console.log("Shutting Error throught")
     process.exit(1)
 })
@@ -15,7 +16,7 @@ mongoose.connect(process.env.LOCALHOST).then(()=>{
 })
 
 process.on("rejectionHandled",(err)=>{
-    console.log("Shutting Error throught")
+    console.log("Shutting Error throught On Server")
     process.exit(1)
 })
 

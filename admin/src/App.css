@@ -1,0 +1,63 @@
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --main-color: #ad2524;
+}
+.row{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+#root {
+  font-family: "Poppins", sans-serif !important;
+}
+.ant-layout {
+  min-height: 100vh;
+}
+.ant-layout-sider {
+  background-color: white !important;
+}
+.ant-menu {
+  background-color: white !important;
+}
+.ant-menu-item {
+  color: #515050 !important;
+  margin: 18px 5px !important;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 4px 25px !important;
+}
+
+.ant-menu-item-selected {
+  background-color: var(--main-color) !important;
+  color: white !important;
+}
+
+.demo-logo-vertical {
+  min-width: 50%;
+  height: 83px;
+  text-align: center;
+}
+
+.sm-logo {
+  display: none !important;
+}
+.lg-logo {
+  width: 50%;
+}
+
+.ant-layout-sider-collapsed .sm-logo {
+  display: block !important;
+}
+.ant-layout-sider-collapsed .lg-logo {
+  display: none !important;
+}
+.ant-layout-content{
+  background: none !important;
+}
