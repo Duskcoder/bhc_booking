@@ -1,16 +1,12 @@
-
-
-
-
-
 * {
   margin: 0;
   padding: 0;
 }
 :root {
   --main-color: #ad2524;
+  --seconday-color: gray;
 }
-.row{
+.row {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
@@ -58,6 +54,47 @@
 .ant-layout-sider-collapsed .lg-logo {
   display: none !important;
 }
-.ant-layout-content{
+.ant-layout-content {
   background: none !important;
+  margin: 22px 0px !important;
+  padding: 3px !important;
+}
+
+.button_register {
+  padding: 10px 25px;
+  border: 1px solid black;
+  outline: none;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 15px;
+}
+
+.password-icons {
+  position: relative;
+}
+.password-icons--eye {
+  position: absolute;
+  top: 36px;
+  right: 12px;
+}
+.text__color {
+  color: var(--main-color);
+}
+.font__size {
+  font-size: 25px !important;
+}
+
+.color-token {
+  color: var(--seconday-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }

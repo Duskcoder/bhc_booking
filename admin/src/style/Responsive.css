@@ -1,0 +1,8 @@
+@media only screen and (max-width:767px){
+    .register_form{
+        margin-top: 25px !important;
+    }
+    .register_form1{
+        margin-top: 65px !important;
+    }
+}

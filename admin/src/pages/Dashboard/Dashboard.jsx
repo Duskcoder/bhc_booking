@@ -109,7 +109,7 @@ function Dashboard() {
         <div>
             <h5>Dashboard</h5>
             <div class="row g-6 mb-6 mt-4">
-                <div class="col-xl-3 col-sm-6 col-12">
+                <div class="col-xl-3 col-sm-12 col-12">
                     <div class="card shadow border-0">
                         <div class="card-body">
                             <div class="row">
@@ -178,7 +178,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-12">
+                <div class="col-lg-3 col-sm-6 col-12">
                     <div class="card shadow border-0">
                         <div class="card-body">
                             <div class="row">
@@ -203,34 +203,52 @@ function Dashboard() {
                 </div>
             </div>
             <div className='row align-items-center'>
-                <div className='col-xl-6 col-sm-6 col-12'>
-                    <LineChart width={730} height={250} data={data}
-                        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-                        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                    </LineChart>
-                </div>
-                <div className='col-xl-6 col-sm-6 col-12'>
-                    <RadialBarChart
-                        width={630}
-                        height={450}
-                        innerRadius="10%"
-                        outerRadius="80%"
-                        data={data1}
-                        startAngle={180}
-                        endAngle={0}
-                    >
-                        <RadialBar minAngle={15} label={{ fill: '#666', position: 'insideStart' }} background clockWise={true} dataKey='uv' />
-                        <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' align="right" />
-                        <Tooltip />
-                    </RadialBarChart>
-                </div>
-            </div>
+    <div className='col-lg-6 col-md-6 col-sm-12'>
+        <LineChart
+            width={500}
+            height={250}
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        </LineChart>
+    </div>
+    <div className='col-lg-6 col-md-6 col-sm-12'>
+        <RadialBarChart
+            width={500} // Adjusted width for consistency
+            height={450}
+            innerRadius="10%"
+            outerRadius="80%"
+            data={data1}
+            startAngle={180}
+            endAngle={0}
+        >
+            <RadialBar
+                minAngle={15}
+                label={{ fill: '#666', position: 'insideStart' }}
+                background
+                clockWise={true}
+                dataKey='uv'
+            />
+            <Legend
+                iconSize={10}
+                width={120}
+                height={140}
+                layout='vertical'
+                verticalAlign='middle'
+                align="right"
+            />
+            <Tooltip />
+        </RadialBarChart>
+    </div>
+</div>
+
         </div>
     )
 }

@@ -1,0 +1,102 @@
+.register_form {
+  margin-top: 4% !important;
+  padding: 35px !important;
+  background: white;
+  border-radius: 20px;
+}
+.register_form1 {
+  margin-top: 7% !important;
+  padding: 35px !important;
+  background: white;
+  border-radius: 20px;
+}
+.active{
+    border: 1px solid red !important;
+}
+
+
+.background__image {
+  background-image: radial-gradient(
+      circle at 52% 37%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 15%,
+      transparent 15%,
+      transparent 65%,
+      transparent 65%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 70% 3%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 33%,
+      transparent 33%,
+      transparent 62%,
+      transparent 62%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 38% 28%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 15%,
+      transparent 15%,
+      transparent 94%,
+      transparent 94%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 12% 92%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 1%,
+      transparent 1%,
+      transparent 19%,
+      transparent 19%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 50% 84%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 28%,
+      transparent 28%,
+      transparent 96%,
+      transparent 96%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 11% 43%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 20%,
+      transparent 20%,
+      transparent 63%,
+      transparent 63%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 45% 11%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 19%,
+      transparent 19%,
+      transparent 65%,
+      transparent 65%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 90% 54%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 11%,
+      transparent 11%,
+      transparent 19%,
+      transparent 19%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle at 23% 100%,
+      hsla(165, 0%, 91%, 0.05) 0%,
+      hsla(165, 0%, 91%, 0.05) 35%,
+      transparent 35%,
+      transparent 86%,
+      transparent 86%,
+      transparent 100%
+    ),
+    linear-gradient(103deg, rgb(173, 38, 36), rgb(255, 162, 1));
+  min-height: 100vh;
+}

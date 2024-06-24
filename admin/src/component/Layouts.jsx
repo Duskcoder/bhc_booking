@@ -12,7 +12,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 const Layouts = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [selectedKeys, setSelectedKeys] = useState(["/"]);
   const {
     token: { colorBgContainer, borderRadiusLG },

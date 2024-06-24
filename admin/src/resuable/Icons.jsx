@@ -15,7 +15,7 @@ import { MdOutlineWorkHistory } from "react-icons/md";
 import { MdWorkHistory } from "react-icons/md";
 import { MdOutlineBugReport } from "react-icons/md";
 import { MdBugReport } from "react-icons/md";
-
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 export const Icons = {
     Home: {
         default: <MdOutlineDashboard size={25} />,
@@ -48,6 +48,10 @@ export const Icons = {
     Setting:{
         default: <FaRegBookmark size={25} />,
         active: <FaBookmark size={25} />
+    },
+    eye:{
+        default:<IoEyeOffOutline/>,
+        active:<IoEyeOutline/>
     }
 
 }
