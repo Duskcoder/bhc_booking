@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { Adminlogin } from "../Register/Registerservice"
+import { Adminlogin, adminGet } from "../Register/Registerservice"
 import { toast } from "react-toastify";
 
 // Admin
@@ -9,6 +9,19 @@ export const Adminlogincreate = createAsyncThunk(
     async (data, thunkApi) => {
         try {
             const response = await Adminlogin(data);
+            return response;
+        } catch (err) {
+            toast.error(err?.response?.data?.message)
+            return thunkApi.rejectWithValue(err);
+        }
+    }
+);
+
+export const AdminGetcreate = createAsyncThunk(
+    "get",
+    async (_, thunkApi) => {
+        try {
+            const response = await adminGet();
             return response;
         } catch (err) {
             toast.error(err?.response?.data?.message)
@@ -39,9 +52,9 @@ const initialState = {
     isLoading: false,
     isError: false,
     shopgetOne: {},
-    errormessage: "",
+
     allUser: [],
-    allVendor: []
+
 };
 
 export const Adminslice = createSlice({
@@ -68,6 +81,22 @@ export const Adminslice = createSlice({
 
             })
             .addCase(Adminlogincreate.rejected, (state, action) => {
+                state.isError = true;
+                state.isLoading = false;
+                state.errormessage = action.error;
+            })
+            .addCase(AdminGetcreate.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(AdminGetcreate.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.isLoading = false;
+                state.isError = false;
+                state.allUser = action.payload?.message
+
+
+            })
+            .addCase(AdminGetcreate.rejected, (state, action) => {
                 state.isError = true;
                 state.isLoading = false;
                 state.errormessage = action.error;

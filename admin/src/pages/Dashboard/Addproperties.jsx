@@ -3,14 +3,19 @@ import { Icons } from '../../resuable/Icons'
 import { useNavigate } from "react-router-dom"
 import Input from '../../resuable/Input'
 import { useFormik } from "formik"
+import {createProduct,resetSuccessState} from '../../feature/admin/PropertieSlice'
+import {  useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup"
+import Loading from '../../resuable/Loading'
 function Addproperties() {
     const [images, setImages] = useState([]);
+    const dispatch=useDispatch()
+    const {isSuccess,isLoading}=useSelector((state)=>state.product)
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [showSortNotification, setShowSortNotification] = useState(true);
     const { values, handleBlur, handleChange, resetForm, handleSubmit, errors, touched } = useFormik({
         initialValues: {
-            product_name: "",
+            propertie_name: "",
             product_price: "",
             address: "",
             country: "",
@@ -20,7 +25,7 @@ function Addproperties() {
 
         },
         validationSchema: Yup.object().shape({
-            product_name: Yup.string().required("Name is required"),
+            propertie_name: Yup.string().required("Name is required"),
             product_price: Yup.string().required("Price is required"),
             address: Yup.string().required("Address is required"),
             country: Yup.string().required("Country is required"),
@@ -28,7 +33,8 @@ function Addproperties() {
 
         }),
         onSubmit: (value) => {
-            console.log(value);
+            const data={...value,images:images}
+            dispatch(createProduct(data))
         }
     })
 
@@ -62,6 +68,13 @@ function Addproperties() {
     const handleClick = () => {
         navigate(-1)
     }
+    if(isSuccess){
+        navigate("/properties")
+        dispatch(resetSuccessState())
+    }
+    if(isLoading){
+        return <Loading/>
+    }
     return (
         <div className='ps-2'>
             <div className='d-flex gap-2'>
@@ -75,26 +88,49 @@ function Addproperties() {
                 <div className='col-lg-6 card p-3 shadow-lg'>
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <Input className={`form-control ${errors.product_name && touched.product_name ? "active" : ""}`} label="Product Name" type="text" name="product_name" values={values.product_name} onChange={handleChange} onBlur={handleBlur} placeholder="Name" />
-
-                            <Input className={`form-control ${errors.product_price && touched.product_price ? "active" : ""}`} label="Product Price" type="number" name="product_price" values={values.product_price} onChange={handleChange} onBlur={handleBlur} placeholder="Price" />
-
+                            <Input className={`form-control ${errors.propertie_name && touched.propertie_name ? "active" : ""}`} label="Properties Name" type="text" name="propertie_name" values={values.propertie_name} onChange={handleChange} onBlur={handleBlur} placeholder="Name" />
+                            {errors.propertie_name && touched.propertie_name ? (
+                                <small className="text-danger">{errors.propertie_name}</small>
+                            ) : (
+                                ""
+                            )}
+                            <Input className={`form-control ${errors.product_price && touched.product_price ? "active" : ""}`} label="Properties Price" type="number" name="product_price" values={values.product_price} onChange={handleChange} onBlur={handleBlur} placeholder="Price" />
+                            {errors.product_price && touched.product_price ? (
+                                <small className="text-danger">{errors.product_price}</small>
+                            ) : (
+                                ""
+                            )}
                             <div className='mt-3'>
-                                <label for="exampleFormControlTextarea1" className="form-label" >Rent/Sales</label>
+                                <label for="exampleFormControlTextarea1" className='fs-6' style={{fontWeight:"500"}} >Rent/Sales</label>
                                 <select className={`form-select ${errors.option && touched.option ? "active" : ""}`} aria-label="Default select example" name='option' value={values.option} onChange={handleChange} onBlur={handleBlur}>
                                     <option selected>Open this select</option>
                                     <option value="rent">Rent</option>
                                     <option value="sales">sales</option>
 
                                 </select>
+                                {errors.option && touched.option ? (
+                                <small className="text-danger">{errors.option}</small>
+                            ) : (
+                                ""
+                            )}
                             </div>
                             <Input className={`form-control ${errors.country && touched.country ? "active" : ""}`} label="Country" type="text" name="country" values={values.country} onChange={handleChange} onBlur={handleBlur} placeholder="Country" />
+                            {errors.country && touched.country ? (
+                                <small className="text-danger">{errors.country}</small>
+                            ) : (
+                                ""
+                            )}
                             <div class="mt-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+                                <label for="exampleFormControlTextarea1" className='fs-6' style={{fontWeight:"500"}}>Address</label>
                                 <textarea className={`form-control ${errors.address && touched.address ? "active" : ""}`} id="exampleFormControlTextarea1" rows="3" name='address' value={values.address} onChange={handleChange} onBlur={handleBlur}></textarea>
+                                {errors.address && touched.address ? (
+                                <small className="text-danger">{errors.address}</small>
+                            ) : (
+                                ""
+                            )}
                             </div>
 
-                            <div>
+                            <div className='mt-3'>
                                 <div style={{border:"1px solid black",padding:"5px"}}>
                                     <label className="pb-2">
                                         Minimum Four images <span className="text-red-500">*</span>
@@ -108,7 +144,7 @@ function Addproperties() {
                                         style={{ display: 'none' }}
                                     />
 
-                                    <div className="mb-3">
+                                    <div className="mb-3 ">
                                         <div className="pb-2">
                                             {showSortNotification && (
                                                 <div

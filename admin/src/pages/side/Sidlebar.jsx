@@ -12,6 +12,7 @@ const navigate=useNavigate()
 
 const handleLogout=()=>{
     localStorage.removeItem("admin")
+    window.location.reload()
     navigate("/")
 }
 

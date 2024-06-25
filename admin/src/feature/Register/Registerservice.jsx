@@ -1,5 +1,17 @@
 import axios from "axios";
 import { Url } from "../../api/Url";
+const getTokenFromLocalStorage = localStorage.getItem("admin")
+  ? localStorage.getItem("admin")
+  : null;
+export const config = {
+  headers: {
+    // "Content-Type": "multipart/form-data",
+    Authorization: getTokenFromLocalStorage
+      ? `Bearer ${getTokenFromLocalStorage}`
+      : null,
+    Accept: "application/json",
+  },
+};
 export const Adminlogin = async (data) => {
   const response = await axios.post(`${Url.BASE_URL}api/v2/admin/login`, data);
   if (response?.data) {
@@ -8,6 +20,19 @@ export const Adminlogin = async (data) => {
   }
   return response.data;
 };
+
+//get
+
+export const adminGet = async () => {
+  try {
+    const response = await axios.get(`${Url.BASE_URL}api/v2/admin-user`, config)
+    return response.data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+
 
 
 

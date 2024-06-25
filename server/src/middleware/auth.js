@@ -42,21 +42,18 @@ const isAuthenticate = async (req, res, next) => {
 };
 
 // Middleware to restrict access based on roles
-async function restrict(RoleValidation) {
-  return async (req, res, next) => {
-    try {
-      const roles = await RoleValidation(); // Assuming RoleValidation is a function that returns a promise resolving to an array of roles
+const restrict = (...role) => {
+  const allowedFields = new Set(role);
 
-      if (!roles.includes(req.user.role)) {
-        const error = new Error("You don't have permission to perform this action");
-        error.status = 403;
-        return next(error);
-      }
+  return (req, res, next) => {
+    if (allowedFields.has(req.user.role)) {
       next();
-    } catch (error) {
-      next(error);
+    } else {
+      return res.status(403).json({
+        message: "You don't have permission to perform this action",
+      });
     }
   };
-}
+};
 
 module.exports = { generateToken, isAuthenticate, restrict };
