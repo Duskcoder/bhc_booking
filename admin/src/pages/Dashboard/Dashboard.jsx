@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {
     AreaChart,
     XAxis,
@@ -13,6 +13,10 @@ import {
 import DataTable from "react-data-table-component";
 import { Icons } from '../../resuable/Icons';
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AdminGetcreate } from '../../feature/Register/Registerslice';
+import { getProduct } from '../../feature/admin/PropertieSlice'
 
 const columns = [
     { name: "Id", selector: (row) => row.id, sortable: true },
@@ -124,9 +128,30 @@ export const customStyles = {
 }
   
 function Dashboard() {
+    const [rentProducts, setRentProducts] = useState([]);
+    const [sellProducts, setSellProducts] = useState([]);
+    const dispatch = useDispatch()
+    const { productsGet } = useSelector((state) => state.product)
+
+    const { allUser } = useSelector(state => state.admin)
     const navigate = useNavigate()
     const handleClick = () => {
         navigate("/user")
+    }
+
+    useEffect(() => {
+        dispatch(AdminGetcreate())
+        dispatch(getProduct())
+    }, [dispatch])
+    useEffect(() => {
+
+            setRentProducts(productsGet?.filter((item) => item?.option === "rent"));
+            setSellProducts(productsGet?.filter((item) => item?.option === "sales"));
+        
+    }, [productsGet]);
+   
+    const handleClick1=()=>{
+        navigate("/properties")
     }
 
     const data1 = [
@@ -201,10 +226,10 @@ function Dashboard() {
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Users</span>
-                                    <span class="h3 font-bold mb-0">0</span>
+                                    <span class="h3 font-bold mb-0">{allUser?.length}</span>
                                 </div>
                                 <div class="col-auto">
-                                   
+
                                     <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
                                         <i class="bi bi-people"></i>
                                     </div>
@@ -223,19 +248,19 @@ function Dashboard() {
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Unit Available Sales</span>
-                                    <span class="h3 font-bold mb-0">0</span>
+                                    <span class="h3 font-bold mb-0">{sellProducts?.length}</span>
                                 </div>
                                 <div class="col-auto">
-                                <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                    <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
                                         <i class="bi bi-credit-card"></i>
                                     </div>
                                 </div>
                             </div>
                             <div className='mt-2 text-center'>
-                                <button className='button_deign' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
+                                <button className='button_deign' onClick={handleClick1}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
 
                             </div>
-                         
+
                         </div>
                     </div>
                 </div>
@@ -245,7 +270,7 @@ function Dashboard() {
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Unit Available Rent</span>
-                                    <span class="h3 font-bold mb-0">0</span>
+                                    <span class="h3 font-bold mb-0">{rentProducts?.length}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
@@ -254,10 +279,10 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div class="mt-2 mb-0 text-sm">
-                            <div className='mt-2 text-center'>
-                                <button className='button_deign' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
+                                <div className='mt-2 text-center'>
+                                    <button className='button_deign' onClick={handleClick1}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
 
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -277,10 +302,10 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div class="mt-2 mb-0 text-sm">
-                            <div className='mt-2 text-center'>
-                                <button className='button_deign' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
+                                <div className='mt-2 text-center'>
+                                    <button className='button_deign' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
 
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>

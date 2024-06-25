@@ -3,7 +3,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
-
+import { MdDelete } from "react-icons/md";
 import { BsChatSquareQuote } from "react-icons/bs";
 import { BsChatSquareQuoteFill } from "react-icons/bs";
 import { AiOutlinePropertySafety } from "react-icons/ai";
@@ -61,7 +61,8 @@ export const Icons = {
     },
     eye:{
         default:<IoEyeOffOutline/>,
-        active:<IoEyeOutline/>
+        active:<IoEyeOutline/>,
+        delete:<MdDelete/>
     },
     arrow:{
         default:<IoIosArrowDroprightCircle size={20}/>,

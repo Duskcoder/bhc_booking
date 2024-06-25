@@ -46,6 +46,8 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/properties" element={<Properties />} />
+          <Route path="/properties/:id" element={<Properties />} />
+
           <Route path="/addproperties" element={<Addproperties />} />
           <Route path="/verification" element={<Verfications />} />
           <Route path="/booking" element={<Bookings />} />

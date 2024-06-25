@@ -50,6 +50,7 @@ const isAuthenticate = async (req, res, next) => {
   }
 };
 
+// Middleware to restrict access based on roles
 const restrict = (...role) => {
   const allowedFields = new Set(role);
 
