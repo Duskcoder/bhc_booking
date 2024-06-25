@@ -1,6 +1,5 @@
 const userSchmea = require("../model/userModel");
-const Role = require("../model/roleModel");
-const RoleValidation = require("../utils/roleValidation");
+
 const { generateToken } = require("../middleware/auth");
 class userController {
   async createUser(req, res) {
@@ -16,12 +15,7 @@ class userController {
 
     return res
       .status(200)
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: false,
 
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-      })
       .json({ message: "User create Successfully", token: token });
   }
 
@@ -45,30 +39,11 @@ class userController {
     const token = generateToken(data);
     return res
       .status(200)
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: false,
 
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-      })
       .json({ message: "Login Successfully", token: token });
   }
 
-  async getUser(req, res) {
-    const user = req.user.role;
 
-    const restrict = await RoleValidation(user);
-
-    if (!restrict) {
-      return res
-        .status(403)
-        .json({ message: "you don't have permission to access this route" });
-    }
-
-    const data = await userSchmea.find();
-
-    res.status(200).json({ data });
-  }
 }
 
 module.exports = userController;

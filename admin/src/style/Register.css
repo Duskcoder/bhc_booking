@@ -100,3 +100,15 @@
     linear-gradient(103deg, rgb(173, 38, 36), rgb(255, 162, 1));
   min-height: 100vh;
 }
+
+.button_deign{
+
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid black;
+  border-radius: 20px;
+  
+
+}

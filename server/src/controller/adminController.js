@@ -55,6 +55,22 @@ class adminCreate {
       return res.status(400).json({ message: "Something Went Wrong" });
     }
   }
+
+  async adminProfile(req, res, next) {
+    try {
+      const { _id } = req.user;
+      const user = await userSchmea.findById(_id);
+      if (!user) {
+        return res
+          .status(400)
+          .json({ message: "User with that Id is not found" });
+      }
+
+      res.status(200).json({ data: { user } });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = adminCreate;

@@ -32,6 +32,11 @@ const Layouts = () => {
       label: 'Dashboard',
     },
     {
+      key: '/user',
+      icon: selectedKeys.includes('/user') ? Icons.users.active : Icons.users.default,
+      label: 'Users',
+    },
+    {
       key: 'maintenance',
       icon: selectedKeys.includes('maintenance') ? Icons.maintaenance.active : Icons.maintaenance.default,
       label: 'Maintenance',
@@ -42,8 +47,8 @@ const Layouts = () => {
       label: 'Properties',
     },
     {
-      key: 'bookings',
-      icon: selectedKeys.includes('bookings') ? Icons.bookings.active : Icons.bookings.default,
+      key: 'booking',
+      icon: selectedKeys.includes('booking') ? Icons.bookings.active : Icons.bookings.default,
       label: 'Bookings',
     },
     {
