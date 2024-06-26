@@ -18,7 +18,6 @@ function Sidebarcontent({ Active }) {
 
     const dispatch = useDispatch()
     const { AdmingetOne } = useSelector((state) => state.admin);
-    console.log(AdmingetOne);
 
 
     useEffect(() => {

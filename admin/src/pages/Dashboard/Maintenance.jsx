@@ -19,6 +19,8 @@ function Maintenance() {
   const handleClick = (id) => {
     // const userDetails = mainTainList.find((user) => user?._id === id);
     setDetail(id);
+
+    console.log(id)
     setOpen(true);
   };
 
