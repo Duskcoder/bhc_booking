@@ -9,6 +9,8 @@ const userSchmea = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "Email is Required"],
+    unique: true,
+
   },
   mobile: {
     type: Number,
