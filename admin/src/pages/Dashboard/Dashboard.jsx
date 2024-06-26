@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import {
     AreaChart,
     XAxis,
@@ -74,13 +74,14 @@ function Dashboard() {
     }, [dispatch])
     useEffect(() => {
 
-            setRentProducts(productsGet?.filter((item) => item?.option === "rent"));
-            setSellProducts(productsGet?.filter((item) => item?.option === "sales"));
-        
+        setRentProducts(productsGet?.filter((item) => item?.option === "rent"));
+        setSellProducts(productsGet?.filter((item) => item?.option === "sales"));
+
     }, [productsGet]);
-   
-    const handleClick1=()=>{
+
+    const handleClick1 = () => {
         navigate("/properties")
+
     }
 
     const data1 = [
@@ -155,7 +156,7 @@ function Dashboard() {
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Users</span>
-                                    <span class="h3 font-bold mb-0">{allUser?.length}</span>
+                                    <span class="h3 font-bold mb-0">{allUser?.length || 0}</span>
                                 </div>
                                 <div class="col-auto">
 
@@ -177,7 +178,7 @@ function Dashboard() {
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Unit Available Sales</span>
-                                    <span class="h3 font-bold mb-0">{sellProducts?.length}</span>
+                                    <span class="h3 font-bold mb-0">{sellProducts?.length ||0}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -199,7 +200,7 @@ function Dashboard() {
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Unit Available Rent</span>
-                                    <span class="h3 font-bold mb-0">{rentProducts?.length}</span>
+                                    <span class="h3 font-bold mb-0">{rentProducts?.length || 0}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white text-lg rounded-circle">

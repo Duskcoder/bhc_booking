@@ -56,10 +56,10 @@ function Properties() {
             )
         })
     }
-const handleClose=()=>{
-    setOpen(false)
-    navigate("/properties")
-}
+    const handleClose = () => {
+        setOpen(false)
+        navigate("/properties")
+    }
 
     return (
         <div className='px-2 '>
@@ -82,7 +82,7 @@ const handleClose=()=>{
                         <div className="d-flex flex-column showuser-whole">
                             <div className="d-flex justify-content-between mt-4">
                                 <h3 className="ms-3">Properties Details</h3>
-                                <button className="me-3" onClick={ handleClose}>{Icons.close.default}</button>
+                                <button className="me-3" onClick={handleClose}>{Icons.close.default}</button>
                             </div>
                             <div className="showuser-input-div mt-5">
                                 <form className="w-100">
@@ -128,21 +128,23 @@ const handleClose=()=>{
 
                                 </form>
                                 <div className='row'>
-                                    <div className='col-lg-4'>
-                                        {
-                                            getOneproduct?.images?.map((item) => (
-                                                <img src={`${Url.BASE_URL}${item}`} />
-                                            ))
-                                        }
-                                    </div>
+
+                                    {
+                                        getOneproduct?.images?.map((item) => (
+                                            <div className='col-lg-6'>
+                                                <img src={`${Url.BASE_URL}${item}`} width="100%" />
+                                            </div>
+                                        ))
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             }
 
-        </div>
+        </div >
     )
 }
 

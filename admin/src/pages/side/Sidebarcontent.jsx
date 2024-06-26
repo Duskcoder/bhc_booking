@@ -7,6 +7,7 @@ import Changepassword from "./Changepassword";
 
 import { useSelector, useDispatch } from "react-redux";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { AdminGetOnecreate } from "../../feature/Register/Registerslice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -15,19 +16,22 @@ import * as Yup from "yup";
 function Sidebarcontent({ Active }) {
     const [Edite, setEdite] = useState(false);
 
+    const dispatch = useDispatch()
+    const { AdmingetOne } = useSelector((state) => state.admin);
+    console.log(AdmingetOne);
 
 
-
-
-
+    useEffect(() => {
+        dispatch(AdminGetOnecreate())
+    }, [dispatch])
 
 
     const { values, handleBlur, handleChange, handleSubmit } = useFormik({
         enableReinitialize: true,
         initialValues: {
-            name: "",
-            email: "",
-            mobile: "",
+            name: AdmingetOne?.name || "",
+            email: AdmingetOne?.email || "",
+            mobile: AdmingetOne?.mobile || "",
         },
         onSubmit: (value) => {
 
@@ -44,8 +48,8 @@ function Sidebarcontent({ Active }) {
     return (
         <div>
             {Active === 1 && (
-                <div className="row shadow rounded-5">
-                    <div className="col-lg-12 p-3" style={{}}>
+                <div className="row shadow rounded-3">
+                    <div className="col-lg-12 p-3" >
                         <div className="d-flex justify-content-between">
                             <h5 style={{ color: "#ad2524" }}>
                                 {Edite ? "Edite Profile" : "View Profile"}
@@ -63,7 +67,8 @@ function Sidebarcontent({ Active }) {
                                     label="Name"
                                     placeholder="Name"
                                     name="name"
-
+                                    value={values.name}
+                                    onChange={handleChange}
                                     readOnly={!Edite}
                                 />
                                 <Input
@@ -72,7 +77,8 @@ function Sidebarcontent({ Active }) {
                                     label="Email"
                                     placeholder="Email"
                                     name="email"
-
+                                    value={values.email}
+                                    onChange={handleChange}
                                     readOnly={!Edite}
                                 />
                                 <Input
@@ -81,7 +87,8 @@ function Sidebarcontent({ Active }) {
                                     label="Mobile Number"
                                     placeholder="Mobile Number"
                                     name="mobile"
-
+                                    value={values.mobile}
+                                    onChange={handleChange}
                                     readOnly={!Edite}
                                 />
                             </div>
@@ -99,7 +106,7 @@ function Sidebarcontent({ Active }) {
                 </div>
             )}
             {Active === 2 && <Changepassword />}
-           
+
         </div>
     );
 }

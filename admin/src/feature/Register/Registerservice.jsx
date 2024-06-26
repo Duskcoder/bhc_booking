@@ -32,6 +32,17 @@ export const adminGet = async () => {
   }
 }
 
+//getOne
+
+export const adminOneGet = async () => {
+  try {
+    const response = await axios.get(`${Url.BASE_URL}api/v2/admin/getOne`, config)
+    return response.data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 
 
 
