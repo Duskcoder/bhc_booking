@@ -5,7 +5,7 @@ const cookie = require("cookie-parser");
 const path = require("path");
 const globalErrorHandler = require("./utils/error");
 //Middleware
-app.use(cors({ origin: 'https://bhc-booking-rnbj.vercel.app/' }));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(cookie());
 app.use(express.urlencoded({ extended: true }));
