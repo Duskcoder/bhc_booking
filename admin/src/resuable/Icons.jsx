@@ -61,7 +61,7 @@ export const Icons = {
     },
     eye:{
         default:<IoEyeOffOutline/>,
-        active:<IoEyeOutline/>,
+        active:<IoEyeOutline size={25}/>,
         delete:<MdDelete/>
     },
     arrow:{

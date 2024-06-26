@@ -1,39 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { customStyles } from "./Dashboard";
 import DataTable from "react-data-table-component";
 import { Icons } from "../../resuable/Icons";
 import "../../style/Maintenance.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  maintaenanceGetFromServer,
+  mainTainencePatchServer,
+} from "../../feature/maintainence/mainTainenceSlice";
+import { BsMailbox2Flag } from "react-icons/bs";
 
 function Maintenance() {
   const [open, setOpen] = useState(false);
-  const [detail, setDetail] = useState({});
-  const details = [
-    {
-      id: 1,
-      name: "yogesh",
-      email: "yogesh@gmail.com",
-      mobile: "1111111111",
-      active: "pending",
-    },
-    {
-      id: 2,
-      name: "gokul",
-      email: "gokul@gmail.com",
-      mobile: "2222222222",
-      active: "rejected",
-    },
-    {
-      id: 3,
-      name: "maha",
-      email: "maha@gmail.com",
-      mobile: "2222222222",
-      active: "success",
-    },
-  ];
 
+  const { mainTainList } = useSelector((state) => state.main);
+
+  const [detail, setDetail] = useState();
   const handleClick = (id) => {
-    const userDetails = details.find((user) => user.id === id);
-    setDetail(userDetails);
+    // const userDetails = mainTainList.find((user) => user?._id === id);
+    setDetail(id);
     setOpen(true);
   };
 
@@ -50,20 +35,37 @@ function Maintenance() {
     },
   ];
 
-  const data = details.map((detail) => ({
-    id: detail.id,
-    name: detail.name,
-    email: detail.email,
-    mobile: detail.mobile,
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(maintaenanceGetFromServer());
+  }, [dispatch]);
+
+  const data = mainTainList.map((detail, index) => ({
+    id: detail?._id,
+    name: (
+      <span style={{ fontWeight: "bold", fontSize: "16px" }} key={index}>
+        {detail?.userId?.name}
+      </span>
+    ),
+    email: (
+      <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+        {detail?.userId?.email}
+      </span>
+    ),
+    mobile: (
+      <span style={{ fontWeight: "bold", fontSize: "16px" }}>
+        {detail?.userId?.mobile}
+      </span>
+    ),
     active: (
       <div
         style={{
           background:
-            detail.active === "pending"
+            detail.status === "pending"
               ? "orange"
-              : detail.active === "rejected"
+              : detail.status === "rejected"
               ? "red"
-              : detail.active === "success"
+              : detail.status === "success"
               ? "green"
               : "gray",
           height: "20px",
@@ -75,17 +77,24 @@ function Maintenance() {
           textTransform: "capitalize",
         }}
       >
-        {detail.active}
+        {detail.status}
       </div>
     ),
     action: (
-      <div>
-        <button onClick={() => handleClick(detail.id)}>
+      <div className="mx-auto flex ">
+        <button className="mx-auto" onClick={() => handleClick(detail)}>
           {Icons.eye.active}
         </button>
       </div>
     ),
   }));
+
+
+  const handleUpdate=(id,data)=>{
+
+    dispatch(mainTainencePatchServer({id,data}))
+
+  }
 
   return (
     <div className="ps-2">
@@ -107,67 +116,74 @@ function Maintenance() {
                 </button>
               </div>
               <div className="showuser-input-div mt-5">
-                <form className="w-100">
-                  <div>
-                    <label htmlFor="name" className="fw-bold">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      className="showuser-input p-2 mb-2 w-100 fw-bold"
-                      disabled
-                      value={detail.name || ""}
-                    />
-                  </div>
-                  <div className="d-flex flex-column">
-                    <label htmlFor="email" className="fw-bold">
-                      Email
-                    </label>
-                    <input
-                      type="text"
-                      className="showuser-input p-2 mb-2 w-100 fw-bold"
-                    //   disabled
-                      value={detail.email || ""}
-                      readOnly
-                    />
-                  </div>
-                  <div className="d-flex flex-column">
-                    <label htmlFor="mobile" className="fw-bold">
-                      Mobile
-                    </label>
-                    <input
-                      type="text"
-                      className="showuser-input p-2 mb-2 w-100 fw-bold"
-                      disabled
-                      value={detail.mobile || ""}
-                    />
-                  </div>
-                  <label htmlFor="mobile" className="fw-bold">
-                    Status
+                {/* <form className="w-100"> */}
+                <div>
+                  <label htmlFor="name" className="fw-bold">
+                    Name
                   </label>
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="rejected">Rejected</option>
-                    <option value="success">Success</option>
-                  </select>
+                  <input
+                    type="text"
+                    className="showuser-input p-2 mb-2 w-100 fw-bold"
+                    disabled
+                    value={detail?.userId?.name || ""}
+                  />
+                </div>
+                <div className="d-flex flex-column">
+                  <label htmlFor="email" className="fw-bold">
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    className="showuser-input p-2 mb-2 w-100 fw-bold"
+                    //   disabled
+                    value={detail?.userId?.email || ""}
+                    readOnly
+                  />
+                </div>
+                <div className="d-flex flex-column">
+                  <label htmlFor="mobile" className="fw-bold">
+                    Mobile
+                  </label>
+                  <input
+                    type="text"
+                    className="showuser-input p-2 mb-2 w-100 fw-bold"
+                    disabled
+                    value={detail?.userId?.mobile || ""}
+                  />
+                </div>
+                <label htmlFor="mobile" className="fw-bold">
+                  Status
+                </label>
+                <select
+                  className="form-select"
+                  aria-label="Default select example"
+                  onClick={(e)=>handleUpdate(detail?._id,e.target.value)}
+                >
+                  <option value="pending">Pending</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="success">Success</option>
+                </select>
 
-                  <div className="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">
-                      Message
-                    </label>
-                    <textarea
-                      class="form-control"
-                      id="exampleFormControlTextarea1"
-                      rows="3"
-                    ></textarea>
-                  </div>
-                  <div className="text-center">
-                    <button className="button_register">Send</button>
-                  </div>
-                </form>
+                <div className="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">
+                    Message
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    readOnly
+                    value={detail?.message || ""}
+                  ></textarea>
+                </div>
+                <div className="text-center">
+                  <a href={`mailto:${data?.userId?.email}`}>
+                    <button className="button_register">
+                      <BsMailbox2Flag size={20} />
+                    </button>
+                  </a>
+                </div>
+                {/* </form> */}
               </div>
             </div>
           </div>
