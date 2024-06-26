@@ -18,7 +18,9 @@ const adminRoute = require("./routes/adminRoutes");
 const propertiesRoute = require("./routes/propertiesRoutes");
 const maintainanceRoute = require("./routes/maintainenceRoutes");
 const bookingRoute = require("./routes/bookingRoutes")
-
+app.use("/test",(req,res)=>{
+  res.send("Hello World")
+})
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
     path: "./env",
