@@ -7,8 +7,8 @@ const maintenanceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["pending", "rejected", "success"],
-    default:"pending"
+    enum: ["hold", "rejected", "approved"],
+    default:"hold"
   },
   message: {
     type: String,

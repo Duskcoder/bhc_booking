@@ -12,16 +12,26 @@ import { BsMailbox2Flag } from "react-icons/bs";
 
 function Maintenance() {
   const [open, setOpen] = useState(false);
-
   const { mainTainList } = useSelector((state) => state.main);
-
   const [detail, setDetail] = useState();
-  const handleClick = (id) => {
-    // const userDetails = mainTainList.find((user) => user?._id === id);
-    setDetail(id);
 
-    console.log(id)
+  const dispatch = useDispatch();
+
+  const handleClick = (id) => {
+    setDetail(id);
     setOpen(true);
+  };
+
+  useEffect(() => {
+    dispatch(maintaenanceGetFromServer());
+  }, [dispatch]);
+
+  const handleUpdate = (id, data) => {
+    dispatch(mainTainencePatchServer({ id, data }));
+  };
+
+  const handleSendEmail = () => {
+    window.location.href = `mailto:${detail?.userId?.email}`;
   };
 
   const columns = [
@@ -36,11 +46,6 @@ function Maintenance() {
       sortable: false,
     },
   ];
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(maintaenanceGetFromServer());
-  }, [dispatch]);
 
   const data = mainTainList.map((detail, index) => ({
     id: detail?._id,
@@ -63,13 +68,13 @@ function Maintenance() {
       <div
         style={{
           background:
-            detail.status === "pending"
+            detail.status === "hold"
               ? "orange"
               : detail.status === "rejected"
-              ? "red"
-              : detail.status === "success"
-              ? "green"
-              : "gray",
+                ? "red"
+                : detail.status === "approved"
+                  ? "green"
+                  : "gray",
           height: "20px",
           borderRadius: "10px",
           padding: "20px",
@@ -83,20 +88,13 @@ function Maintenance() {
       </div>
     ),
     action: (
-      <div className="mx-auto flex ">
+      <div className="mx-auto flex">
         <button className="mx-auto" onClick={() => handleClick(detail)}>
           {Icons.eye.active}
         </button>
       </div>
     ),
   }));
-
-
-  const handleUpdate=(id,data)=>{
-
-    dispatch(mainTainencePatchServer({id,data}))
-
-  }
 
   return (
     <div className="ps-2">
@@ -118,7 +116,6 @@ function Maintenance() {
                 </button>
               </div>
               <div className="showuser-input-div mt-5">
-                {/* <form className="w-100"> */}
                 <div>
                   <label htmlFor="name" className="fw-bold">
                     Name
@@ -137,7 +134,6 @@ function Maintenance() {
                   <input
                     type="text"
                     className="showuser-input p-2 mb-2 w-100 fw-bold"
-                    //   disabled
                     value={detail?.userId?.email || ""}
                     readOnly
                   />
@@ -159,15 +155,17 @@ function Maintenance() {
                 <select
                   className="form-select"
                   aria-label="Default select example"
-                  onClick={(e)=>handleUpdate(detail?._id,e.target.value)}
+                  onClick={(e) => handleUpdate(detail?._id, e.target.value)}
                 >
-                  <option value="pending">Pending</option>
+                  <option value="hold">Hold</option>
                   <option value="rejected">Rejected</option>
-                  <option value="success">Success</option>
+                  <option value="approved">Approved</option>
                 </select>
-
                 <div className="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">
+                  <label
+                    htmlFor="exampleFormControlTextarea1"
+                    className="form-label"
+                  >
                     Message
                   </label>
                   <textarea
@@ -179,13 +177,10 @@ function Maintenance() {
                   ></textarea>
                 </div>
                 <div className="text-center">
-                  <a href={`mailto:${data?.userId?.email}`}>
-                    <button className="button_register">
-                      <BsMailbox2Flag size={20} />
-                    </button>
-                  </a>
+                  <button className="button_register" onClick={handleSendEmail}>
+                    <BsMailbox2Flag size={20} />
+                  </button>
                 </div>
-                {/* </form> */}
               </div>
             </div>
           </div>

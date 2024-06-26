@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AdminGetcreate } from '../../feature/Register/Registerslice';
 import { getProduct } from '../../feature/admin/PropertieSlice'
+import Loading from '../../resuable/Loading';
 
 const columns = [
     { name: "Id", selector: (row) => row.id, sortable: true },
@@ -41,92 +42,44 @@ for (let i = 0; i < 10; i++) {
 
 export const customStyles = {
     header: {
-      style: {
-        fontSize: '22px',
-        fontWeight: 'bold',
-        color: '#ffffff',
-        backgroundColor: 'linear-gradient(90deg, #ad2524, #faa21c)', // Gradient background
-        borderTopLeftRadius: '20px',
-        borderTopRightRadius: '20px',
-        borderBottom: '2px solid #ad2524',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Adding shadow
-      },
+        style: {
+            fontSize: '22px',
+            fontWeight: 'bold',
+            color: '#ffffff',
+            backgroundColor: 'linear-gradient(90deg, #ad2524, #faa21c)', // Gradient background
+
+
+
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Adding shadow
+        },
     },
     headCells: {
-      style: {
-        fontSize: '18px',
-        fontWeight: 'bold',
-        color: '#ffffff',
-        backgroundColor: '#faa21c',
-        borderRadius: '10px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Adding shadow
-      },
+        style: {
+            fontSize: '18px',
+            fontWeight: 'bold',
+            color: '#ffffff',
+            backgroundColor: "#ad2524"
+
+
+        },
     },
     cells: {
-      style: {
-        fontSize: '16px',
-        padding: '10px',
-        // backgroundColor: '#ffffff', // Change to white background for contrast
-        color: '#4a4a4a',
-        borderRadius: '10px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Adding shadow
-        transition: 'all 0.3s ease', // Adding transition effect
-      },
+        style: {
+            fontSize: '16px',
+            padding: '10px',
+
+
+
+
+
+        },
     },
     rows: {
-      style: {
-        minHeight: '72px',
-        '&:nth-child(even)': {
-          backgroundColor: '#ffeb99',
-          borderRadius: '10px',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Adding shadow
-        },
-        '&:nth-child(odd)': {
-          backgroundColor: '#ffffff',
-          borderRadius: '10px',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Adding shadow
-        },
-        '&:hover': {
-          transform: 'scale(1.02)', // Slightly scale up on hover
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Enhance shadow on hover
-        },
-        borderLeft: '2px solid #ad2524',
-        borderRight: '2px solid #ad2524',
-      },
+
     },
-    pagination: {
-      style: {
-        borderTop: '1px solid #e9ecef',
-        padding: '10px',
-        borderBottomLeftRadius: '20px',
-        borderBottomRightRadius: '20px',
-      },
-      pageButtonsStyle: {
-        borderRadius: '50%',
-        height: '40px',
-        width: '40px',
-        padding: '10px',
-        margin: '0 5px',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease', // Adding transition effect
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Adding shadow
-        '&:hover': {
-          backgroundColor: '#ad2524',
-          color: '#ffffff',
-          transform: 'scale(1.1)', // Slightly scale up on hover
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Enhance shadow on hover
-        },
-        '&:focus': {
-          outline: 'none',
-          backgroundColor: '#faa21c',
-          color: '#ffffff',
-          transform: 'scale(1.1)', // Slightly scale up on focus
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Enhance shadow on focus
-        },
-      },
-    },
+
 }
-  
+
 function Dashboard() {
     const [rentProducts, setRentProducts] = useState([]);
     const [sellProducts, setSellProducts] = useState([]);
@@ -138,6 +91,8 @@ function Dashboard() {
     const handleClick = () => {
         navigate("/user")
     }
+
+   
 
     useEffect(() => {
         dispatch(AdminGetcreate())
@@ -217,6 +172,7 @@ function Dashboard() {
             "rent": 4300
         }
     ]
+   
     return (
         <div className='ps-2'>
             <h5>Dashboard</h5>
@@ -237,7 +193,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div className='mt-2 text-center'>
-                                <button className='button_deign' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
+                                <button className='button_deign1 bg-primary' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
 
                             </div>
                         </div>
@@ -249,7 +205,7 @@ function Dashboard() {
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2">Total Unit Available Sales</span>
-                                    <span class="h3 font-bold mb-0">{sellProducts?.length ||0}</span>
+                                    <span class="h3 font-bold mb-0">{sellProducts?.length || 0}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
@@ -258,7 +214,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div className='mt-2 text-center'>
-                                <button className='button_deign' onClick={handleClick1}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
+                                <button className='button_deign2' onClick={handleClick1}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
 
                             </div>
 
@@ -281,7 +237,7 @@ function Dashboard() {
                             </div>
                             <div class="mt-2 mb-0 text-sm">
                                 <div className='mt-2 text-center'>
-                                    <button className='button_deign' onClick={handleClick1}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
+                                    <button className='button_deign3' onClick={handleClick1}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
 
                                 </div>
                             </div>
@@ -293,7 +249,7 @@ function Dashboard() {
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Pending Notification</span>
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2">Pending Notification in Maintenance</span>
                                     <span class="h3 font-bold mb-0">0</span>
                                 </div>
                                 <div class="col-auto">
@@ -304,7 +260,7 @@ function Dashboard() {
                             </div>
                             <div class="mt-2 mb-0 text-sm">
                                 <div className='mt-2 text-center'>
-                                    <button className='button_deign' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
+                                    <button className='button_deign4' onClick={handleClick}>View <span className='pt-1'>{Icons.arrow.default}</span></button>
 
                                 </div>
                             </div>
@@ -330,7 +286,7 @@ function Dashboard() {
             </div>
 
             <div>
-                <h5>Maintaenance List</h5>
+                <h5>Maintenance List</h5>
                 <div className='row'>
                     <DataTable
                         columns={columns}

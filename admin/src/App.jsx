@@ -18,6 +18,7 @@ import Setting from "./pages/Dashboard/Setting";
 import Verfications from "./pages/Dashboard/Verfications";
 import Bookings from "./pages/Dashboard/Bookings";
 import Reports from "./pages/Dashboard/Reports";
+import Role from "./pages/Dashboard/Role";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/booking" element={<Bookings />} />
           <Route path="/history" element={<History />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/role" element={<Role />} />
 
           <Route path="/setting" element={<Setting />} />
         </Route>

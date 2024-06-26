@@ -59,6 +59,7 @@ export const AdminPassword = createAsyncThunk(
     "get-password",
     async (data, thunkApi) => {
         try {
+            console.log(data);
             const response = await adminUpdateProfile(data);
             return response;
         } catch (err) {

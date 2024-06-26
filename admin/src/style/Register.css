@@ -10,10 +10,9 @@
   background: white;
   border-radius: 20px;
 }
-.active{
-    border: 1px solid red !important;
+.active {
+  border: 1px solid red !important;
 }
-
 
 .background__image {
   background-image: radial-gradient(
@@ -101,14 +100,61 @@
   min-height: 100vh;
 }
 
-.button_deign{
 
+.button_deign2 {
   width: 100%;
-  padding: 10px;
+  background-color: palevioletred; 
+  border: none;
+  color: white; 
+  padding: 10px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
   font-size: 16px;
-  font-weight: 500;
-  border: 1px solid black;
-  border-radius: 20px;
-  
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 12px; 
+}
 
+.button_deign3 {
+  width: 100%;
+  background-color: lightskyblue; 
+  border: none;
+  color: white; 
+  padding: 10px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 12px; 
+}
+
+.button_deign1 {
+  width: 100%;
+  border: none; 
+  color: white; 
+  padding: 10px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 12px; 
+}
+.button_deign4{
+  width: 100%;
+  background-color: #ffc107; 
+  border: none; 
+  color: white; 
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 12px; 
 }

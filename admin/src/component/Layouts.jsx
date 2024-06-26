@@ -47,9 +47,19 @@ const Layouts = () => {
       label: 'Properties',
     },
     {
+      key: 'role',
+      icon: selectedKeys.includes('role') ? Icons.role.active : Icons.role.default,
+      label: 'Role',
+    },
+    {
       key: 'booking',
       icon: selectedKeys.includes('booking') ? Icons.bookings.active : Icons.bookings.default,
       label: 'Bookings',
+    },
+    {
+      key: 'verification',
+      icon: selectedKeys.includes('verification') ? Icons.verification.active : Icons.verification.default,
+      label: 'Verification',
     },
    
     {
@@ -63,6 +73,7 @@ const Layouts = () => {
       icon: selectedKeys.includes('setting') ? Icons.Setting.active : Icons.Setting.default,
       label: 'Setting',
     },
+   
   ];
 
   return (

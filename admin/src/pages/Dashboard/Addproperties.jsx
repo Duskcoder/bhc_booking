@@ -114,7 +114,7 @@ function Addproperties() {
                                 ""
                             )}
                             </div>
-                            <Input className={`form-control ${errors.country && touched.country ? "active" : ""}`} label="Country" type="text" name="country" values={values.country} onChange={handleChange} onBlur={handleBlur} placeholder="Country" />
+                            <Input className={`form-control ${errors.country && touched.country ? "active" : ""}`} label="Area" type="text" name="country" values={values.country} onChange={handleChange} onBlur={handleBlur} placeholder="Area" />
                             {errors.country && touched.country ? (
                                 <small className="text-danger">{errors.country}</small>
                             ) : (

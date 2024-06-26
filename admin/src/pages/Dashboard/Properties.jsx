@@ -23,7 +23,7 @@ function Properties() {
         dispatch(deletProduct(id))
     }
     const { productsGet, success, getOneproduct } = useSelector((state) => state.product)
-
+   console.log(getOneproduct);
     useEffect(() => {
         dispatch(getProduct())
         dispatch(ProductgetOne(id))
@@ -32,7 +32,7 @@ function Properties() {
         { name: "Id", selector: (row) => row.id, sortable: true },
         { name: "Properties Name", selector: (row) => row.properties_name, sortable: true },
         { name: "Properties Price", selector: (row) => row.properties_price, sortable: true },
-        { name: "Country", selector: (row) => row.country, sortable: true },
+        { name: "Area", selector: (row) => row.country, sortable: true },
         { name: "Option", selector: (row) => row.option, sortable: true },
         {
             name: "Action",
@@ -105,7 +105,7 @@ function Properties() {
                                         />
                                     </div>
                                     <div className="d-flex flex-column">
-                                        <label htmlFor="mobile" className="fw-bold">Country</label>
+                                        <label htmlFor="mobile" className="fw-bold">Area</label>
                                         <input
                                             type="text"
                                             className="showuser-input p-2 mb-2 w-100 fw-bold"
@@ -123,7 +123,7 @@ function Properties() {
 
                                     <div className='mb-3'>
                                         <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{getOneproduct?.address}</textarea>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value={getOneproduct?.address}></textarea>
                                     </div>
 
                                 </form>

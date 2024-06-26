@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { useFormik } from "formik"
 import { useDispatch } from "react-redux"
 import * as Yup from "yup"
-import {AdminPassword} from '../../feature/Register/Registerslice'
+import { AdminPassword } from '../../feature/Register/Registerslice'
 import { Icons } from '../../resuable/Icons';
 
 const initialState = {
@@ -25,7 +25,7 @@ function reducers(state, action) {
 }
 function Changepassword() {
     const [state, dispatch] = useReducer(reducers, initialState)
-    const dispatch1 = useDispatch()
+    const dispatch1= useDispatch()
     const { handleBlur, handleChange, handleReset, handleSubmit, values, errors, touched } = useFormik({
         initialValues: {
             oldpassword: '',
@@ -38,9 +38,10 @@ function Changepassword() {
             confirmpassword: Yup.string().oneOf([Yup.ref('new_password'), null], 'Passwords must match').required("Confirm password is required")
         }),
         onSubmit: (value) => {
-
+            
             const data = { oldpassword: value.oldpassword, newpassword: value.new_password }
-            dispatch(AdminPassword(data))
+            console.log(data);
+            dispatch1(AdminPassword(data))
 
         }
     })
@@ -102,7 +103,7 @@ function Changepassword() {
                             />
 
                             <span className="password-icons--eye" onClick={handleNewpassword}>
-                                {state.new_password ? Icons.eye.active : Icons.eye.default}
+                                {state.newpassword ? Icons.eye.active : Icons.eye.default}
                             </span>
                             {errors.new_password && touched.new_password ? <small className='text-danger'>{errors.new_password}</small> : ""}
 

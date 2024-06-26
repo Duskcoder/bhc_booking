@@ -6,7 +6,6 @@ const { isAuthenticate, restrict } = require("../middleware/auth");
 const multer = require("../utils/Multer");
 
 router.route("/booking-create").post(
-  multer.single("reprensentativeSignature"),
   isAuthenticate,
 
   createBooking

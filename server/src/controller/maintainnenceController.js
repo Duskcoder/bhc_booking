@@ -16,28 +16,33 @@ class Maintainence {
     }
   };
 
+  getMaintainence = async (req, res, next) => {
+    try {
+      const data = await maintenanceModel
+        .find()
+        .sort({ updatedAt: -1, createdAt: -1 })
+        .populate("userId");
 
-  getMaintainence = async(req,res,next)=>{
-    try{
-        const data = await maintenanceModel.find().sort({updatedAt:-1,createdAt:-1}).populate("userId")
 
-        res.status(200).json({data})
-    }catch(error){
-        next(new CustomError(error.message,500))
+      res.status(200).json({ data });
+    } catch (error) {
+      next(new CustomError(error.message, 500));
     }
-  }
+  };
 
+  updateMainTainence = async (req, res, next) => {
+    try {
+      const data = await maintenanceModel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
 
-  updateMainTainence = async(req,res,next)=>{
-    try{
-        const data =await maintenanceModel.findByIdAndUpdate(req.params.id,req.body,{new:true})
-
-        res.status(200).json({data})
-    }catch(error){
-        next(new CustomError(error.message,500))
+      res.status(200).json({ data });
+    } catch (error) {
+      next(new CustomError(error.message, 500));
     }
-  }
+  };
 }
 
-
-module.exports = Maintainence
+module.exports = Maintainence;

@@ -21,6 +21,8 @@ import { FaRegUser } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { TiUserAddOutline } from "react-icons/ti";
+import { TiUserAdd } from "react-icons/ti";
 
 export const Icons = {
     Home: {
@@ -40,8 +42,8 @@ export const Icons = {
         active: <AiFillPropertySafety size={20} />
     },
     bookings: {
-        default: <FaRegBookmark size={24} />,
-        active: <FaBookmark size={24} />
+        default: <FaRegBookmark size={20} />,
+        active: <FaBookmark size={20} />
     },
     verification:{
         default: <MdOutlineVerified size={20} />,
@@ -61,7 +63,7 @@ export const Icons = {
     },
     eye:{
         default:<IoEyeOffOutline/>,
-        active:<IoEyeOutline size={25}/>,
+        active:<IoEyeOutline/>,
         delete:<MdDelete/>
     },
     arrow:{
@@ -70,6 +72,10 @@ export const Icons = {
     close:{
         default:<IoCloseCircleSharp size={30}/>,
         active:<FaArrowAltCircleLeft size={20}/>
+    },
+    role:{
+        default:<TiUserAddOutline size={20}/>,
+        active:<TiUserAdd size={20}/>
     }
 
 }

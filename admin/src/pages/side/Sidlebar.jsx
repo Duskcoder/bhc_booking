@@ -17,56 +17,9 @@ function Sidlebar({ Active, setActive }) {
   }
 
   return (
-    // <div className=" d-flex bg-white shadow rounded p-4 mt-5 ms-3">
-    //   <div
-    //     className="d-flex  align-items-center mb-4 "
-    //     onClick={() => setActive(1)}
-    //   >
-    //     <ImProfile size={20} className={Active === 1 ? "text-danger" : ""} />
-    //     <span
-    //       className={`${Active === 1 ? "text-danger" : ""
-    //         } d-md-block d-lg-block d-none ms-2`}
-    //     >
-    //       Profile
-    //     </span>
-    //   </div>
+ 
 
-    //   <div
-    //     className="d-flex align-items-center mb-4 "
-    //     onClick={() => setActive(2)}
-    //   >
-    //     <TbPasswordFingerprint size={20} className={Active === 2 ? "text-danger" : ""} />
-    //     <span
-    //       className={` ${Active === 2 ? "text-danger" : ""
-    //         }  d-sm-none d-lg-block d-none ms-2`}
-    //     >
-    //       Change Password
-    //     </span>
-    //   </div>
-
-    //   <div
-    //     className="d-flex align-items-center "
-    //     onClick={handleLogout}
-    //   >
-    //     <CiLogout size={20} className={Active === 3 ? "text-danger" : ""} />
-    //     <span
-    //       className={`${Active === 3 ? "text-danger" : ""
-    //         } d-md-block d-none ms-2`}
-    //     >
-    //       Logout
-    //     </span>
-    //   </div>
-
-
-
-
-
-
-
-
-    // </div>
-
-    <div className="shadow rounded p-3 d-flex justify-content-between">
+    <div className="shadow-md rounded p-3 d-flex justify-content-between">
       <div
         className="d-flex  align-items-center "
         onClick={() => setActive(1)}
