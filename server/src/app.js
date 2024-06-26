@@ -14,7 +14,8 @@ app.use(express.static(path.join(__dirname, "./public")));
 const userRoute = require("./routes/userRoutes");
 const adminRoute = require("./routes/adminRoutes");
 const propertiesRoute = require("./routes/propertiesRoutes");
-const maintainanceRoute = require("./routes/maintainenceRoutes")
+const maintainanceRoute = require("./routes/maintainenceRoutes");
+const bookingRoute = require("./routes/bookingRoutes")
 
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
@@ -25,6 +26,7 @@ app.use("/api/v2", userRoute);
 app.use("/api/v2", adminRoute);
 app.use("/api/v2", propertiesRoute);
 app.use("/api/v2", maintainanceRoute);
+app.use("/api/v2",bookingRoute)
 
 
 app.use(globalErrorHandler);

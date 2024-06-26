@@ -99,9 +99,7 @@ function Login() {
 
 
                             </div>
-                            <div className='text-end mt-4'>
-                                <h6 onClick={handleClick1} className='color-token'>Forget Password ?</h6>
-                            </div>
+                         
 
                         </div>
                         <div className='mt-3 text-center'>

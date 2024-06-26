@@ -51,21 +51,13 @@ const Layouts = () => {
       icon: selectedKeys.includes('booking') ? Icons.bookings.active : Icons.bookings.default,
       label: 'Bookings',
     },
-    {
-      key: 'verification',
-      icon: selectedKeys.includes('verification') ? Icons.verification.active : Icons.verification.default,
-      label: 'Verification',
-    },
+   
     {
       key: 'history',
       icon: selectedKeys.includes('history') ? Icons.history.active : Icons.history.default,
       label: 'History',
     },
-    {
-      key: 'reports',
-      icon: selectedKeys.includes('reports') ? Icons.Reports.active : Icons.Reports.default,
-      label: 'Reports',
-    },
+   
     {
       key: 'setting',
       icon: selectedKeys.includes('setting') ? Icons.Setting.active : Icons.Setting.default,

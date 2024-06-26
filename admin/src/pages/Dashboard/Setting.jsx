@@ -7,12 +7,12 @@ function Setting() {
         <div className='container'>
             <div className='' >
                 <div className='row justify-content-center' style={{ cursor: "pointer" }}>
-                    <div className='col-lg-6'>
+                    <div className='col-lg-6 mb-5'>
                         <Sidlebar Active={Active} setActive={setActive} />
                     </div>
 
                 </div>
-                <div className="row justify-content-center mt-3">
+                <div className="row justify-content-center mt-5">
                     <div className='col-lg-5'>
                         <Sidebarcontent Active={Active} />
                     </div>
