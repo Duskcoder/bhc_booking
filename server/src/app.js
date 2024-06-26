@@ -21,11 +21,7 @@ const bookingRoute = require("./routes/bookingRoutes")
 app.use("/test",(req,res)=>{
   res.send("Hello World")
 })
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({
-    path: "./env",
-  });
-}
+
 app.use("/api/v2", userRoute);
 app.use("/api/v2", adminRoute);
 app.use("/api/v2", propertiesRoute);

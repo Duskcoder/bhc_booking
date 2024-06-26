@@ -7,6 +7,12 @@ process.on("uncaughtException", (err) => {
   console.log("Shutting Error throught");
   process.exit(1);
 });
+
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({
+    path: "./env",
+  });
+}
 //connection
 mongoose
   .connect(process.env.LOCALHOST)
