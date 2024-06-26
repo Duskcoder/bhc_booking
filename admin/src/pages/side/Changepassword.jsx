@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { useFormik } from "formik"
 import { useDispatch } from "react-redux"
 import * as Yup from "yup"
-import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import {AdminPassword} from '../../feature/Register/Registerslice'
 import { Icons } from '../../resuable/Icons';
 
 const initialState = {
@@ -40,7 +40,7 @@ function Changepassword() {
         onSubmit: (value) => {
 
             const data = { oldpassword: value.oldpassword, newpassword: value.new_password }
-            console.log(data)
+            dispatch(AdminPassword(data))
 
         }
     })

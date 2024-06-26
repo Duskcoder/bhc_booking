@@ -2,7 +2,9 @@ import React from 'react'
 
 function Bookings() {
   return (
-    <div>Bookings</div>
+    <div className='ps-2'>
+
+    </div>
   )
 }
 

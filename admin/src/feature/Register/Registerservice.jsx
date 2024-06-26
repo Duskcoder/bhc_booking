@@ -44,6 +44,26 @@ export const adminOneGet = async () => {
 }
 
 
+// update profile
+export const adminUpdateProfile = async (data) => {
+  try {
+    const response = await axios.patch(`${Url.BASE_URL}api/v2/update-profile`,data, config)
+    return response.data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+//update_password
+export const adminUpdatePassword = async (data) => {
+  try {
+    const response = await axios.patch(`${Url.BASE_URL}api/v2/update-password`,data, config)
+    return response.data
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 
 
 

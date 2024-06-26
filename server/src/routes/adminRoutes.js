@@ -7,6 +7,8 @@ const {
   forgetPassword,
   resetPassword,
   adminGetUsers,
+  updateMe,
+  updatePasswordByShopLogin
 } = new adminController();
 const { isAuthenticate, restrict } = require("../middleware/auth");
 
@@ -22,5 +24,17 @@ router
 router
   .route("/admin-user")
   .get(isAuthenticate, restrict("admin"), adminGetUsers);
+
+router
+  .route("/update-profile")
+  .patch(isAuthenticate, restrict("admin"), updateMe);
+
+  router
+  .route("/update-password")
+  .patch(
+    isAuthenticate,
+    restrict("admin"),
+    updatePasswordByShopLogin
+  );
 
 module.exports = router;

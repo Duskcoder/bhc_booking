@@ -7,7 +7,7 @@ import Changepassword from "./Changepassword";
 
 import { useSelector, useDispatch } from "react-redux";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { AdminGetOnecreate } from "../../feature/Register/Registerslice";
+import { AdminGetOnecreate,AdminPatchcreate } from "../../feature/Register/Registerslice";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -18,7 +18,7 @@ function Sidebarcontent({ Active }) {
 
     const dispatch = useDispatch()
     const { AdmingetOne } = useSelector((state) => state.admin);
-    console.log(AdmingetOne);
+   
 
 
     useEffect(() => {
@@ -34,7 +34,8 @@ function Sidebarcontent({ Active }) {
             mobile: AdmingetOne?.mobile || "",
         },
         onSubmit: (value) => {
-
+          dispatch(AdminPatchcreate(value))
+          setEdite(false)
         },
     });
     const handleEdite = () => {

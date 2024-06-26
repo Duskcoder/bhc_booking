@@ -153,20 +153,61 @@ class adminCreate {
 
       res.status(200).json({ data: { user } });
     } catch (error) {
-      return res
-      .status(400)
-      .json({ message: "Went Wrong" });
+      return res.status(400).json({ message: "Went Wrong" });
     }
   }
 
-  async adminGetUsers(req,res,next){
-    try{
-      const users = await userSchmea.find({role:"user"});
-      res.status(200).json({message:users});
-    }catch(err){
-      return res
-      .status(400)
-      .json({ message: "Went Wrong" });
+  async adminGetUsers(req, res, next) {
+    try {
+      const users = await userSchmea.find({ role: "user" });
+      res.status(200).json({ message: users });
+    } catch (err) {
+      return res.status(400).json({ message: "Went Wrong" });
+    }
+  }
+
+  filterReqObj = (obj, ...allowedFields) => {
+    const newObj = {};
+    Object.keys(obj).forEach((prop) => {
+      if (allowedFields.includes(prop)) newObj[prop] = obj[prop];
+    });
+    return newObj;
+  };
+
+  updateMe = async (req, res, next) => {
+    if (req.body.password) {
+      return res.status(400).json({
+        message: "you cannot update your password using this endpoint",
+      });
+    }
+
+    const filtered = this.filterReqObj(req.body, "name", "email", "mobile");
+
+    const data = await userSchmea.findByIdAndUpdate(req.user._id, filtered, {
+      runValidators: true,
+      new: true,
+    });
+    // console.log(data)
+
+    res.status(200).json({ message: "User profile updated" });
+  };
+
+  async updatePasswordByShopLogin(req, res, next) {
+    try {
+      const user = await userSchmea.findById(req.user._id).select("+password");
+
+      if (!(await user.comparePassword(req.body.oldpassword))) {
+        return res.status(400).json({
+          message: "The current password you provided is wrong",
+        });
+      }
+      user.password = req.body.newpassword;
+      await user.save();
+      res
+        .status(200)
+        .json({ message: "password has been changed successfull" });
+    } catch (error) {
+      next(new CustomError("Something went wrong", 400));
     }
   }
 }

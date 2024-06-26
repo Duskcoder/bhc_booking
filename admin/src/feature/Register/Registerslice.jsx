@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { Adminlogin, adminGet ,adminOneGet} from "../Register/Registerservice"
+import { Adminlogin, adminGet, adminOneGet, adminUpdateProfile ,adminUpdatePassword} from "../Register/Registerservice"
 import { toast } from "react-toastify";
 
 // Admin
@@ -34,6 +34,32 @@ export const AdminGetOnecreate = createAsyncThunk(
     async (_, thunkApi) => {
         try {
             const response = await adminOneGet();
+            return response;
+        } catch (err) {
+            toast.error(err?.response?.data?.message)
+            return thunkApi.rejectWithValue(err);
+        }
+    }
+);
+
+export const AdminPatchcreate = createAsyncThunk(
+    "get-update",
+    async (data, thunkApi) => {
+        try {
+            const response = await adminUpdateProfile(data);
+            return response;
+        } catch (err) {
+            toast.error(err?.response?.data?.message)
+            return thunkApi.rejectWithValue(err);
+        }
+    }
+);
+
+export const AdminPassword = createAsyncThunk(
+    "get-password",
+    async (data, thunkApi) => {
+        try {
+            const response = await adminUpdateProfile(data);
             return response;
         } catch (err) {
             toast.error(err?.response?.data?.message)
@@ -129,7 +155,42 @@ export const Adminslice = createSlice({
                 state.isLoading = false;
                 state.errormessage = action.error;
             })
+            .addCase(AdminPatchcreate.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(AdminPatchcreate.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.isLoading = false;
+                state.isError = false;
+                if (state.isSuccess) {
+                    toast.success("Update profile Successfully")
+                }
 
+
+            })
+            .addCase(AdminPatchcreate.rejected, (state, action) => {
+                state.isError = true;
+                state.isLoading = false;
+                state.errormessage = action.error;
+            })
+            .addCase(AdminPassword.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(AdminPassword.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.isLoading = false;
+                state.isError = false;
+                if (state.isSuccess) {
+                    toast.success("Update password Successfully")
+                }
+
+
+            })
+            .addCase(AdminPassword.rejected, (state, action) => {
+                state.isError = true;
+                state.isLoading = false;
+                state.errormessage = action.error;
+            })
 
 
 
