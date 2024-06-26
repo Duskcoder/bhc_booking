@@ -40,12 +40,12 @@ function Changepassword() {
         onSubmit: (value) => {
             
             const data = { oldpassword: value.oldpassword, newpassword: value.new_password }
-            console.log(data);
+          
             dispatch1(AdminPassword(data))
 
         }
     })
-    const handleOldpassword = () => {
+    const handleOldpassword = () => {   
         dispatch({
             type: "oldpassword",
         })
