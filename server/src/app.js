@@ -11,9 +11,7 @@ app.use(cookie());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "./public")));
 
-app.use("/",(req,res)=>{
-  res.send("hello world")
-})
+
 //Routes Import
 const userRoute = require("./routes/userRoutes");
 const adminRoute = require("./routes/adminRoutes");
