@@ -5,11 +5,13 @@ const cookie = require("cookie-parser");
 const path = require("path");
 const globalErrorHandler = require("./utils/error");
 //Middleware
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(cookie());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "./public")));
+
+
 //Routes Import
 const userRoute = require("./routes/userRoutes");
 const adminRoute = require("./routes/adminRoutes");
